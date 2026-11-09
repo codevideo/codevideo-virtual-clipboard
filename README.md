@@ -21,12 +21,12 @@ virtualClipboard.applyActions([
 console.log(virtualClipboard.getText()); // "const answer = 42;"
 
 // Snapshots save and restore it, like the other layers
-const snapshot = virtualClipboard.getCurrentClipboardSnapshot(); // { text: "const answer = 42;" }
+const snapshot = virtualClipboard.getCurrentClipboardSnapshot(); // { text: "const answer = 42;", isFullLine: false }
 ```
 
 ## Copying and pasting in the editor
 
-`VirtualClipboard` implements `IClipboard` from codevideo-types (`getText` and `setText`), which is all an editor needs for Cmd+C, Cmd+X and Cmd+V. The VirtualIDE gives every editor the same clipboard, so text copied in one file can be pasted in another. Text an editor copies is recorded as a `clipboard-set-text` action; copying nothing leaves the clipboard as it was. A whole line copied or cut with nothing selected is flagged (`isFullLine()`), so pasting it with nothing selected inserts it above the caret's line, as VS Code does.
+`VirtualClipboard` implements `IClipboard` from codevideo-types (`getText`, `isFullLine` and `setText`), which is all an editor needs for Cmd+C, Cmd+X and Cmd+V. The VirtualIDE gives every editor the same clipboard, so text copied in one file can be pasted in another. Text an editor copies is recorded as a `clipboard-set-text` action; copying nothing leaves the clipboard as it was. A whole line copied or cut with nothing selected is flagged (`isFullLine()`), so pasting it with nothing selected inserts it above the caret's line, as VS Code does.
 
 ## Why?
 
